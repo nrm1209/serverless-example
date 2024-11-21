@@ -1,0 +1,31 @@
+]3iy,$8S"6X,iYu
+
+aws cognito-idp initiate-auth --auth-flow USER_PASSWORD_AUTH --client-id jc5v4mq9tpdmgffqslkdheruk --auth-parameters USERNAME=nmatlala023@student.wethinkcode.co.za,PASSWORD="Khanya21!" --query 'AuthenticationResult.IdToken' --output text
+
+export ID_TOKEN=$(aws cognito-idp initiate-auth --auth-flow USER_PASSWORD_AUTH --client-id jc5v4mq9tpdmgffqslkdheruk --auth-parameters USERNAME=nmatlala023@student.wethinkcode.co.za,PASSWORD="Khanya21!" --query 'AuthenticationResult.IdToken' --output text)
+echo $ID_TOKEN
+
+id token = eyJraWQiOiI0dkZOdk44MmlZNlQ1V1VwTmFLMmt4aW1Ba0x0TUJMK0ZIMFZNcEhzbVNnPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJmMmE1YTQ5NC0zMGIxLTcwZGYtOTIxZS0zYWM4NGE3NDE3YmQiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tXC9ldS13ZXN0LTFfQ0JlZmJqTlZPIiwiY29nbml0bzp1c2VybmFtZSI6ImYyYTVhNDk0LTMwYjEtNzBkZi05MjFlLTNhYzg0YTc0MTdiZCIsIm9yaWdpbl9qdGkiOiI4Zjk0ZGEwZC04OTIxLTRmZmYtYjgxNC1hMTI0YmI2Y2ZlZWIiLCJhdWQiOiJqYzV2NG1xOXRwZG1nZmZxc2xrZGhlcnVrIiwiZXZlbnRfaWQiOiIzMjQzMmE2NS04ZmVlLTRiNjYtODgwMy00YjVkZDk3N2FhNzEiLCJ0b2tlbl91c2UiOiJpZCIsImF1dGhfdGltZSI6MTczMjA5MjkwOCwibmFtZSI6Ik5lbyIsImV4cCI6MTczMjA5NjUwOCwiaWF0IjoxNzMyMDkyOTA4LCJqdGkiOiI5ZDAxMDM3ZS0wN2EyLTQ3NWItYmFhYy1jMTk2ZjM4MTE3ODAiLCJlbWFpbCI6Im5tYXRsYWxhMDIzQHN0dWRlbnQud2V0aGlua2NvZGUuY28uemEifQ.jKEJVRzPTnUlqAuZZHYafLvmzvk9UOvVmquWVS4pT6qu7Y9BcMyVLQt2sHg302vD8pUsTkKCm290RYyqU9M2C18zDAtqRP8m4lIVAj5YajW_v0gDyVslG48PDgxjN_YZR2vpf2_I-n3EjPEKXB9OMrLfhGBVfTgU77Q0xyOBxGpDXng8K3yvZAdoXICmTJgyUmDJdXWns1KxLlrOoSDGPok5ElOyHvYvCHMN5326rXuUlV3owOySJti10GhucGk5ama0Em837vhnCcizlAgqIn5Ew9FJpGnR4oLTkJvh8_VHbMgDVu8OwFnlrcYnuguGoDH-aSj-hxX4cgUWqTkIMg
+
+sub value = f2a5a494-30b1-70df-921e-3ac84a7417bd
+
+curl https://1701jzj6o6.execute-api.eu-west-1.amazonaws.com/Prod/users/f2a5a494-30b1-70df-921e-3ac84a7417bd -H "Authorization:$ID_TOKEN"
+
+curl --location --request PUT "https://1701jzj6o6.execute-api.eu-west-1.amazonaws.com/Prod/users/f2a5a494-30b1-70df-921e-3ac84a7417bd" \
+     --data-raw '{"name": "My name is NEO"}' \
+     --header "Authorization: $ID_TOKEN" \
+     --header "Content-Type: application/json"
+
+export API_ENDPOINT=$(https://1701jzj6o6.execute-api.eu-west-1.amazonaws.com/Prod)
+echo $API_ENDPOINT
+
+export API_ENDPOINT=$(aws cloudformation describe-stacks --stack-name ws-serverless-patterns-users --output text --query 'Stacks[0].Outputs[?OutputKey==`APIEndpoint`].OutputValue')
+echo "API endpoint: $API_ENDPOINT"
+
+curl https://1701jzj6o6.execute-api.eu-west-1.amazonaws.com/Prod/users/f2a5a494-30b1-70df-921e-3ac84a7417bd -H "Authorization:$ID_TOKEN"
+
+
+aws cognito-idp initiate-auth --auth-flow USER_PASSWORD_AUTH --client-id jc5v4mq9tpdmgffqslkdheruk --auth-parameters USERNAME=nmatlala023@student.wethinkcode.co.za,PASSWORD=Khanya21! --query "AuthenticationResult.IdToken" --output text
+
+
+curl https://1701jzj6o6.execute-api.eu-west-1.amazonaws.com/Prod/users -H "Authorization:eyJzdWIiOiJmMmE1YTQ5NC0zMGIxLTcwZGYtOTIxZS0zYWM4NGE3NDE3YmQiLCJjb2duaXRvOmdyb3VwcyI6WyJhcGlBZG1pbnMiXSwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC5ldS13ZXN0LTEuYW1hem9uYXdzLmNvbVwvZXUtd2VzdC0xX0NCZWZiak5WTyIsImNvZ25pdG86dXNlcm5hbWUiOiJmMmE1YTQ5NC0zMGIxLTcwZGYtOTIxZS0zYWM4NGE3NDE3YmQiLCJvcmlnaW5fanRpIjoiZTY5ZTUwZTQtY2ZjNC00ZjFjLTgxMGUtMGI3NGMyZDExOTYxIiwiYXVkIjoiamM1djRtcTl0cGRtZ2ZmcXNsa2RoZXJ1ayIsImV2ZW50X2lkIjoiZjYzYzgxYjctYmNiYy00NjQyLWE4MjgtOTQ5MmRjZWYxNmUyIiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE3MzIxMTQxMjUsIm5hbWUiOiJOZW8iLCJleHAiOjE3MzIxMTc3MjUsImlhdCI6MTczMjExNDEyNSwianRpIjoiMTFkNTgzOWItY2RkZS00ZDgxLWIwYTAtODA3OWQwNGQwNDZjIiwiZW1haWwiOiJubWF0bGFsYTAyM0BzdHVkZW50LndldGhpbmtjb2RlLmNvLnphIn0.lVrWE2F4Cww_eXmxbLIqknIzycZXQXErw1amRh0q0WbQdT0EYDdlywCY6cv4PirtvhcO7_j2OQD-OqU2bj8CYOFjrll9yKichyKdY19EiPCp1U18rllFosiJAh1-Seri0Jj8Zx2ZIrh5VPNSDyneIYv8O95Wfv4OdyPRL6qX_Is_bVHP5DJzRX0CMjCRRrXxGORDKwbVPHD6mF2-mkrJY0g0ZBawsNoam6E5ZlqUgnOapFsePEF_lR4T0TBmGv6_NbTGeTgmbORWI0u0WOTb1tj5NUyiVjlggOUIggIZHfCCHb0WlRwNr4CHu8aMkHoPfCmHWv6I7zQfpZ2MpiYIBA"

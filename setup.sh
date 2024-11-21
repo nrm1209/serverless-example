@@ -30,12 +30,6 @@ unzip awscli-exe-linux-x86_64.zip
 sudo ./aws/install --update
 
 # Upgrade to latest AWS CDK
-cd ~/install
-LATEST_CDK_URL=$(curl -s https://api.github.com/repos/aws/aws-cdk/releases/latest | grep -oP '"zipball_url": "\K[^"]+')
-wget $LATEST_CDK_URL -O cdk-latest.zip
-unzip cdk-latest.zip -d cdk-latest
-sudo npm install -g ./cdk-latest/aws-aws-cdk-*/
-unset LATEST_CDK_URL
 
 # Install Python libraries
 python3.9 -m pip install --upgrade pip
